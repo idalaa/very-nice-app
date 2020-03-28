@@ -1,21 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import MediaRow from './mediaRow';
+import MediaRow from './MediaRow';
+import { useAllMedia } from '../hooks/ApiHooks';
 
-const MediaTable = ({ media }) => {
+const MediaTable = () => {
+  const picArray = useAllMedia();
+
+  console.log(picArray);
+
   return (
     <table>
       <tbody>
-        {media.map((file, index) => (
+        {picArray.map((file, index) => (
           <MediaRow file={file} key={index} />
         ))}
       </tbody>
     </table>
   );
-};
-
-MediaTable.propTypes = {
-  media: PropTypes.array
 };
 
 export default MediaTable;
