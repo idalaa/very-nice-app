@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import useSignUpForm from '../hooks/RegisterHooks';
 import { checkUserAvailable, login, register } from '../hooks/ApiHooks';
 import { withRouter } from 'react-router-dom';
+import { MediaContext } from '../contexts/MediaContext';
 
 const RegisterForm = ({ history }) => {
+  const [user, setUser] = useContext(MediaContext);
   const doRegister = async () => {
-    const free = await checkUserAvailable(inputs.username);
-    if (free.available) {
-      const reg = await register(inputs);
-      console.log(reg);
+    try {
+      await checkUserAvailable(inputs.username);
+      await register(inputs);
       // kirjaudu tomaattisesti
-      const user = await login(inputs);
-      console.log(user);
-      // etusivulle
+      const userdata = await login(inputs);
+      setUser(userdata.user);
+      // console.log(user);
+      // tallenna token
+      localStorage.setItem('token', userdata.token);
+      // siirry etusivulle
       history.push('/home');
-    } else {
-      console.log('not available');
+    } catch (e) {
+      console.log(e.message);
+      // näytä virhe
     }
   };
 
@@ -60,7 +65,7 @@ const RegisterForm = ({ history }) => {
 };
 
 RegisterForm.propTypes = {
-  history: PropTypes.object
+  history: PropTypes.object,
 };
 
 export default withRouter(RegisterForm);

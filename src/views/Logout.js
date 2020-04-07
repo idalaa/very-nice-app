@@ -1,14 +1,17 @@
-import React from 'react';
-import LoginForm from '../components/LoginForm';
-import RegisterForm from '../components/RegisterForm';
+import React, { useContext, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+import { MediaContext } from '../contexts/MediaContext';
 
 const Logout = () => {
-  return (
-    <>
-      <LoginForm />
-      <RegisterForm />
-    </>
-  );
+  // eslint-disable-next-line no-unused-vars
+  const [user, setUser] = useContext(MediaContext);
+
+  useEffect(() => {
+    setUser(null);
+    localStorage.clear();
+  }, [setUser]);
+
+  return <Redirect to={'/home'} />;
 };
 
 export default Logout;
