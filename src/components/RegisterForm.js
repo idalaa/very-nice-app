@@ -4,6 +4,7 @@ import useSignUpForm from '../hooks/RegisterHooks';
 import { checkUserAvailable, login, register } from '../hooks/ApiHooks';
 import { withRouter } from 'react-router-dom';
 import { MediaContext } from '../contexts/MediaContext';
+import { Button, TextField } from '@material-ui/core';
 
 const RegisterForm = ({ history }) => {
   const [user, setUser] = useContext(MediaContext);
@@ -30,35 +31,37 @@ const RegisterForm = ({ history }) => {
     <>
       <h1>Register</h1>
       <form onSubmit={handleSubmit}>
-        <input
+        <TextField
           type='text'
           name='username'
-          placeholder='Username'
+          label='Username'
           onChange={handleInputChange}
           value={inputs.username}
         />
-        <input
+        <TextField
           type='password'
           name='password'
-          placeholder='Password'
+          label='Password'
           onChange={handleInputChange}
           value={inputs.password}
         />
-        <input
+        <TextField
           type='email'
           name='email'
-          placeholder='Email'
+          label='Email'
           onChange={handleInputChange}
           value={inputs.email}
         />
-        <input
+        <TextField
           type='text'
           name='full_name'
-          placeholder='Full name'
+          label='Full name'
           onChange={handleInputChange}
           value={inputs.full_name}
         />
-        <button type='submit'>Register</button>
+        <Button color='primary' type='submit'>
+          Register
+        </Button>
       </form>
     </>
   );
