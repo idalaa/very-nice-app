@@ -51,7 +51,12 @@ const LoginForm = ({ history }) => {
               />
             </Grid>
             <Grid container item>
-              <Button fullWidth color='primary' type='submit'>
+              <Button
+                fullWidth
+                color='primary'
+                type='submit'
+                variant='contained'
+              >
                 Login
               </Button>
             </Grid>
