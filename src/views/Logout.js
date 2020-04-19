@@ -3,15 +3,16 @@ import { Redirect } from 'react-router-dom';
 import { MediaContext } from '../contexts/MediaContext';
 
 const Logout = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [user, setUser] = useContext(MediaContext);
+    // eslint-disable-next-line no-unused-vars
+    const [user, setUser] = useContext(MediaContext);
 
-  useEffect(() => {
-    setUser(null);
-    localStorage.clear();
-  }, [setUser]);
+    useEffect(() => {
+        setUser(null);
+        localStorage.clear();
+    }, [setUser]);
 
-  return <Redirect to={'/home'} />;
+    return <Redirect to = { '/home' }
+    />;
 };
 
 export default Logout;
